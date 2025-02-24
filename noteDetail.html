@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Note Detail</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Note Detail</h1>
+  <div id="noteDetail"></div>
+  <button id="deleteButton">Delete Note</button>
+  <br>
+  <a href="index.html">Back to Notes List</a>
+
+  <script>
+    // Function to get query parameters from the URL
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+    
+    const noteId = getQueryParam('id');
+
+    // Fetch the note details
+    fetch(`http://localhost:5000/api/notes/${noteId}`)
+      .then(response => response.json())
+      .then(note => {
+        const noteDetail = document.getElementById('noteDetail');
+        noteDetail.innerHTML = `<h2>${note.title}</h2><p>${note.content}</p>`;
+      })
+      .catch(error => console.error('Error fetching note detail:', error));
+
+    // Delete the note when the button is clicked
+    document.getElementById('deleteButton').addEventListener('click', function() {
+      if (confirm('Are you sure you want to delete this note?')) {
+        fetch(`http://localhost:5000/api/notes/${noteId}`, {
+          method: 'DELETE'
+        })
+        .then(response => response.json())
+        .then(data => {
+          alert('Note deleted successfully!');
+          window.location.href = 'index.html';
+        })
+        .catch(error => console.error('Error deleting note:', error));
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #007BFF;
+    margin: 5px 0;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  input, textarea {
+    width: 300px;
+    padding: 10px;
+    margin: 5px 0;
+  }
+  
+  button {
+    padding: 10px 15px;
+    background-color: #007BFF;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
